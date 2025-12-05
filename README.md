@@ -30,7 +30,6 @@ The ESP32 advertises as a Bluetooth heart rate monitor, which iOS and Android wi
    esphome run irk-capture.yaml
    ```
 
-Everything is automatically pulled from GitHub - just copy one yaml file!
 
 ## Usage
 
@@ -67,7 +66,7 @@ esp32:
 
 ## Using Captured IRKs
 
-1. Copy the IRK from the "Last Captured IRK" sensor (e.g., `irk:0b639cc70856835b716113912578985a`)
+1. Copy the IRK from the "Last Captured IRK" sensor (e.g., `irk:xxxxxxxxxxxxxxxxxxxxxxxxx`)
 2. Go to Home Assistant → Settings → Devices & Services
 3. Add the "Private BLE Device" integration
 4. Paste the IRK
@@ -94,15 +93,6 @@ automation:
             Address: {{ states('sensor.last_device_address') }}
 ```
 
-## Supported Devices
-
-- ✅ iOS (iPhone, iPad, Apple Watch)
-- ✅ Android phones and tablets
-- ✅ Any ESP32 with Bluetooth (ESP32, ESP32-S3, ESP32-C3, etc.)
-- ❌ ESP32-S2 (no Bluetooth)
-- ❌ ESP8266 (no Bluetooth)
-
-## Troubleshooting
 
 **Device not visible in Bluetooth settings:**
 - Press "Generate New MAC" button
@@ -110,16 +100,9 @@ automation:
 
 **"IRK does not match" in Home Assistant:**
 - Keep your phone's Bluetooth active while adding
-- The phone must be advertising BLE (screen on helps)
+- The phone must be advertising BLE
 
-**Pairing fails:**
-- Try generating a new MAC address
-- Restart the ESP32 device
 
 ## Credits
 
 Based on [ESPresense](https://github.com/ESPresense/ESPresense) enrollment functionality.
-
-## License
-
-MIT
