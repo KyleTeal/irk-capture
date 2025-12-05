@@ -24,6 +24,7 @@ external_components:
       url: https://github.com/KyleTeal/irk-capture
       ref: main
     components: [irk_capture]
+    refresh: 0s
 
 esp32_ble:
   enable_on_boot: false
