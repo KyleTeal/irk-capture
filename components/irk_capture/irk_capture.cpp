@@ -92,11 +92,11 @@ void IRKCaptureComponent::setup_ble() {
   ESP_LOGI(TAG, "BLE MAC: %02X:%02X:%02X:%02X:%02X:%02X",
            mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 
-  // Security settings (matches ESPresense)
+  // Security settings - MITM must be false with NoInputNoOutput (iOS requires consistency)
   NimBLEDevice::setSecurityInitKey(BLE_SM_PAIR_KEY_DIST_ENC | BLE_SM_PAIR_KEY_DIST_ID);
   NimBLEDevice::setSecurityRespKey(BLE_SM_PAIR_KEY_DIST_ENC | BLE_SM_PAIR_KEY_DIST_ID);
   NimBLEDevice::setSecurityIOCap(BLE_HS_IO_NO_INPUT_OUTPUT);
-  NimBLEDevice::setSecurityAuth(true, true, true);
+  NimBLEDevice::setSecurityAuth(true, false, true);  // bonding=true, MITM=false, SC=true
 
   server_ = NimBLEDevice::createServer();
   server_->setCallbacks(new IRKServerCallbacks(this));
