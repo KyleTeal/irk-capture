@@ -1,6 +1,11 @@
 packages:
   irk_capture: github://KyleTeal/irk-capture/irk-capture-package.yaml@main
 
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
