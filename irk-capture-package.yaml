@@ -5,6 +5,18 @@ esphome:
   name: irk-capture
   friendly_name: IRK Capture
 
+# Substitutions with defaults
+substitutions:
+  board_type: ${board_type:esp32dev}
+  ble_name: ${ble_name:JBL Tune}
+  start_on_boot: ${start_on_boot:false}
+
+esp32:
+  board: ${board_type}
+  framework:
+    type: esp-idf
+    version: recommended
+
 logger:
   level: INFO
 
@@ -26,8 +38,8 @@ esp32_ble:
 
 irk_capture:
   id: irk
-  ble_name: "JBL Tune"
-  start_on_boot: false
+  ble_name: "${ble_name}"
+  start_on_boot: ${start_on_boot}
 
 text_sensor:
   - platform: irk_capture

@@ -1,10 +1,13 @@
 packages:
   irk_capture: github://KyleTeal/irk-capture/irk-capture-package.yaml@main
 
-esp32:
-  board: esp32dev
-  framework:
-    type: arduino
+substitutions:
+  board_type: esp32dev
+  ble_name: "JBL Tune"
+  start_on_boot: false
+
+
+
 
 wifi:
   ssid: !secret wifi_ssid

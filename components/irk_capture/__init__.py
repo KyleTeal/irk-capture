@@ -29,10 +29,11 @@ async def to_code(config):
     # Force text component compilation
     cg.add_define("USE_TEXT")
     
-    # Add NimBLE-Arduino library 2.2.1 (matches original working PlatformIO code)
+    # Add NimBLE-Arduino library - ESPHome's esp32_ble uses this for both Arduino and ESP-IDF
+    # ESP-IDF framework still uses NimBLE-Arduino via esp32_ble compatibility layer
     cg.add_library("h2zero/NimBLE-Arduino", "2.2.1")
     
-    # Build flags from original PlatformIO config
+    # Build flags for NimBLE configuration (work for both Arduino and ESP-IDF)
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_BROADCASTER=1")
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_PERIPHERAL=1")
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_CENTRAL=0")
