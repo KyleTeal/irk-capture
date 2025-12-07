@@ -44,6 +44,7 @@ switch:
     advertising:
       name: "BLE Advertising"
       id: ble_advertising
+      restore_mode: ALWAYS_OFF
 
 button:
   - platform: irk_capture
