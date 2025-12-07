@@ -123,7 +123,9 @@ void IRKCaptureComponent::setup_ble() {
   battery->start();
   server_->start();
 
-  start_advertising();
+  if (start_on_boot_) {
+    start_advertising();
+  }
   
   if (ble_name_text_) {
     ble_name_text_->publish_state(ble_name_);

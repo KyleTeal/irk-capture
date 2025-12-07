@@ -27,6 +27,7 @@ esp32_ble:
 irk_capture:
   id: irk
   ble_name: "JBL Tune"
+  start_on_boot: false
 
 text_sensor:
   - platform: irk_capture

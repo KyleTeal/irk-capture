@@ -68,6 +68,7 @@ class IRKCaptureComponent : public Component {
   float get_setup_priority() const override { return -200.0f; }
 
   void set_ble_name(const std::string &name) { ble_name_ = name; }
+  void set_start_on_boot(bool start) { start_on_boot_ = start; }
   void set_irk_sensor(text_sensor::TextSensor *sensor) { irk_sensor_ = sensor; }
   void set_address_sensor(text_sensor::TextSensor *sensor) { address_sensor_ = sensor; }
   void set_advertising_switch(IRKCaptureSwitch *sw) { 
@@ -96,6 +97,7 @@ class IRKCaptureComponent : public Component {
 
  protected:
   std::string ble_name_{"JBL Tune"};
+  bool start_on_boot_{true};
   text_sensor::TextSensor *irk_sensor_{nullptr};
   text_sensor::TextSensor *address_sensor_{nullptr};
   IRKCaptureSwitch *advertising_switch_{nullptr};
