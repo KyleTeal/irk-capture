@@ -3,7 +3,6 @@ import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
 # esp32_ble needed for BT compilation, but we disable enable_on_boot in yaml
-# to prevent it from interfering with our NimBLE setup
 DEPENDENCIES = ["esp32_ble", "text"]
 AUTO_LOAD = ["text_sensor", "switch", "button"]
 CODEOWNERS = ["@esphome"]
@@ -26,17 +25,14 @@ async def to_code(config):
     cg.add(var.set_ble_name(config[CONF_BLE_NAME]))
     cg.add(var.set_start_on_boot(config[CONF_START_ON_BOOT]))
     
-    # Force text component compilation
     cg.add_define("USE_TEXT")
     
-    # Add NimBLE-Arduino library - provides C++ wrapper for NimBLE
+    # NimBLE-Arduino library for ESP-IDF
     cg.add_library("h2zero/NimBLE-Arduino", "2.2.1")
+    cg.add_platformio_option("lib_ldf_mode", "deep+")
+    cg.add_platformio_option("lib_deps", "h2zero/NimBLE-Arduino@2.2.1")
     
-    # Set lib_ldf_mode to ensure PlatformIO finds NimBLE headers correctly
-    # This is needed for ESP-IDF framework where library discovery can fail
-    cg.add_platformio_option("lib_ldf_mode", "chain+")
-    
-    # Build flags for NimBLE configuration (work for both Arduino and ESP-IDF)
+    # NimBLE build flags
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_BROADCASTER=1")
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_PERIPHERAL=1")
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_CENTRAL=0")
