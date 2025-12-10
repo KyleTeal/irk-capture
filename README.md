@@ -94,6 +94,9 @@ automation:
 ```
 
 
+**Build Fails:**
+- Clean the build folder and retry 
+
 **Device not visible in Bluetooth settings:**
 - Press "Generate New MAC" button
 - Make sure advertising switch is ON
