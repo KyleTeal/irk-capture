@@ -27,10 +27,8 @@ async def to_code(config):
     
     cg.add_define("USE_TEXT")
     
-    # NimBLE-Arduino library for ESP-IDF
+    # NimBLE-Arduino library
     cg.add_library("h2zero/NimBLE-Arduino", "2.2.1")
-    cg.add_platformio_option("lib_ldf_mode", "deep+")
-    cg.add_platformio_option("lib_deps", "h2zero/NimBLE-Arduino@2.2.1")
     
     # NimBLE build flags
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_BROADCASTER=1")
