@@ -14,8 +14,7 @@ substitutions:
 esp32:
   board: ${board_type}
   framework:
-    type: esp-idf
-    version: recommended
+    type: arduino
 
 logger:
   level: INFO
