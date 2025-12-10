@@ -16,6 +16,7 @@ esp32:
   board: ${board_type}
   framework:
     type: arduino
+    version: recommended
 
 logger:
   level: INFO
