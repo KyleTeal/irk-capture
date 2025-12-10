@@ -1,5 +1,6 @@
 # IRK Capture Package
 # This file is included via packages - users should not edit this directly
+# Version: 2024-12-10 - Arduino framework
 
 esphome:
   name: irk-capture
