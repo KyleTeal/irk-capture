@@ -29,10 +29,3 @@ async def to_code(config):
     
     # NimBLE-Arduino library
     cg.add_library("h2zero/NimBLE-Arduino", "2.2.1")
-    
-    # NimBLE build flags
-    cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_BROADCASTER=1")
-    cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_PERIPHERAL=1")
-    cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_CENTRAL=0")
-    cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_OBSERVER=0")
-    cg.add_build_flag("-DCONFIG_BT_NIMBLE_MAX_CONNECTIONS=3")
