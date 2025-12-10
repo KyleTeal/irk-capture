@@ -29,9 +29,12 @@ async def to_code(config):
     # Force text component compilation
     cg.add_define("USE_TEXT")
     
-    # Add NimBLE-Arduino library - ESPHome's esp32_ble uses this for both Arduino and ESP-IDF
-    # ESP-IDF framework still uses NimBLE-Arduino via esp32_ble compatibility layer
+    # Add NimBLE-Arduino library - provides C++ wrapper for NimBLE
     cg.add_library("h2zero/NimBLE-Arduino", "2.2.1")
+    
+    # Set lib_ldf_mode to ensure PlatformIO finds NimBLE headers correctly
+    # This is needed for ESP-IDF framework where library discovery can fail
+    cg.add_platformio_option("lib_ldf_mode", "chain+")
     
     # Build flags for NimBLE configuration (work for both Arduino and ESP-IDF)
     cg.add_build_flag("-DCONFIG_BT_NIMBLE_ROLE_BROADCASTER=1")
